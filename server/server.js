@@ -14,20 +14,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 // catch 404's to pass to error handler
-app.use(function(req, res, next) {
-	var err = new Error('File not found');
-	err.status = 404;
-	return next(err);
-});
+// app.use(function(req, res, next) {
+// 	var err = new Error('File not found');
+// 	err.status = 404;
+// 	return next(err);
+// });
 
 // handler for 404 errors
-app.use(function(err, req, res, next) {
-	res.status(err.status || 500);
-	res.render('error', {
-		message: err.message,
-		error: {}
-	});
-});
+// app.use(function(err, req, res, next) {
+// 	res.status(err.status || 500);
+// 	res.send('error', {
+// 		message: err.message,
+// 		error: {}
+// 	});
+// });
 
 app.get('/', (req, res) => {	
 	res.sendFile(path.join(__dirname, '../client/web/assets/index.html'));
