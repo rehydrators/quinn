@@ -33,6 +33,11 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../client/web/assets/index.html'));
 });
 
+app.get('/getanswers', (req, res) => {
+	// refactor with mock data later
+	res.send('Send some mock data');
+});
+
 app.use(express.static(path.join(__dirname, '../client/web')));
 
 app.listen(port, () => {
