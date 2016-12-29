@@ -1,0 +1,27 @@
+{
+  "name": "quinn",
+  "version": "1.0.0",
+  "description": "Q&amp;A chat bot that provides answers to users in a human friendly way",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vientang/quinn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vientang/quinn/issues"
+  },
+  "homepage": "https://github.com/vientang/quinn#readme",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.5",
+    "react": "^15.4.1"
+  }
+}
