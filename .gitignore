@@ -1,5 +1,5 @@
 server/.env
-
+client/web/build/
 # Logs
 logs
 *.log
