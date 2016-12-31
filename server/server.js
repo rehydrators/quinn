@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../client/web/assets/index.html'));
 });
 
-app.get('/getanswers', (req, res) => {
+app.get('/getAnswers', (req, res) => {
 	// refactor with mock data later
 	res.send('Send some mock data');
 });
