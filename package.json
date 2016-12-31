@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "webpack": "webpack -d --progress --colors --watch"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "express": "^4.14.0",
     "mongoose": "^4.7.5",
     "path": "^0.12.7",
+    "quora-api": "^1.0.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
   },
