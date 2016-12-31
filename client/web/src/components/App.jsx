@@ -25,12 +25,17 @@ class App extends React.Component {
 
     axios.get('/getAnswers', {
         params: {
-          question: e.target.value
+          question: self.state.question
         }
       })
       .then(function (response) {
         console.log(response);
-        this.state.messages.push(response);
+        self.state.messages.push(response.data);
+        self.setState({
+          messages: self.state.messages
+        })
+        console.log(self.state.messages)
+
       })
       .catch(function (error) {
         console.log(error);

@@ -21,8 +21,8 @@
   "homepage": "https://github.com/vientang/quinn#readme",
   "dependencies": {
     "axios": "^0.15.3",
-    "body-parser": "^1.15.2",
     "babel-core": "^6.17.0",
+    "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
     "mongoose": "^4.7.5",
