@@ -31,7 +31,7 @@ app.get('/getAnswers', (req, res) => {
 			if (!!answer.answer0) {
 				var newAnswer = answer.answer0.split('.');
 				newAnswer.pop();
-				if (typeof parseInt(newAnswer[newAnswer.length - 1]) === 'number') {
+				if ( !isNaN(parseInt(newAnswer[newAnswer.length - 1])) ) {
 					newAnswer.pop();
 				}
 				newAnswer = newAnswer.join('.').replace(/[.]/gi, '.\n\n');
