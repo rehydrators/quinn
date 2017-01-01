@@ -14,43 +14,31 @@ var port = 3030;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// catch 404's to pass to error handler
-// app.use(function(req, res, next) {
-// 	var err = new Error('File not found');
-// 	err.status = 404;
-// 	return next(err);
-// });
-
-// handler for 404 errors
-// app.use(function(err, req, res, next) {
-// 	res.status(err.status || 500);
-// 	res.send('error', {
-// 		message: err.message,
-// 		error: {}
-// 	});
-// });
-var input = 'What is Javascript';
-
-var spinalCase = function(input) {
-	var spinal = input.replace(/[' ']/gi, '-');
-	return spinal;
-};
-
-console.log(spinalCase(input));
-
-quora.answer(spinalCase(input)).then(answer => {	
-	console.log(answer.answer0 === undefined ? "I don't know" : answer.answer0);
-});
-
 app.get('/', (req, res) => {	
 	res.sendFile(path.join(__dirname, '../client/web/assets/index.html'));
 });
 
 app.get('/getAnswers', (req, res) => {
-	// refactor with mock data later
-	res.send('Send some mock data');
-	quora.answer('When did Batman eat a sandwich').then(answer => {
-		console.log(answer.answer0 === undefined ? "I don't know" : answer.answer0);
+	var input = req.query.question;
+
+	var question = function(input) {
+		var dashedQuestion = input.replace(/[' ']/gi, '-');
+		return dashedQuestion;
+	};
+
+	quora.answer(question(input)).then(answer => {
+		var fullAnswer = function() {
+			if (!!answer.answer0) {
+				return answer.answer0.split('.')
+			} else {
+				return ["I don't know", "It's hard to say"];		
+				// hit Bing API to use it's NLP
+					// search Bing with the input question with 'quora'
+					// return the answer from Bing				
+			}				
+		};
+		var summary = `${fullAnswer()[0]}. ${fullAnswer()[1]}.`;
+		res.send(summary);
 	});
 });
 
