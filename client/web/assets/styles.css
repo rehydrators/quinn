@@ -1,0 +1,80 @@
+html, body, #app {
+	height: 100%;
+	margin: 0;
+  padding: 0;
+  border: none;
+}
+
+#appBody {
+	width: 50%;
+	height: 100%;
+	margin: 0 auto;
+	border-right: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	position: relative;
+	overflow: scroll;
+
+}
+
+#messages {
+	padding: 20px;
+	margin: 0;
+	border: 1px solid black;
+	width: 93%;
+	height: 80%;
+	overflow: scroll;
+}
+
+.answer {
+	max-width: 30%;
+	display: block;
+	background-color: #f1f0f0;
+	border-radius: 20px;
+	margin: 100px 0;
+
+	font-family: sans-serif;
+	font-weight: 300;
+	font-size: 15px;
+
+	padding: 10px;
+}
+
+.question {
+
+	float: right;
+	margin: 20px 0;
+
+	background-color: #0084ff;
+	border-radius: 20px;
+
+	font-family: sans-serif;
+	font-weight: 300;
+	font-size: 15px;
+	color: white;
+
+	padding: 10px;
+
+}
+
+#msgInput {
+	width: 97%;
+	height: 40px;
+	position: absolute; 
+	bottom: 7.5%;
+	border: none;
+
+	border-top: 1px solid #cccccc;
+	resize: none;
+	overflow: auto;
+	margin: 0;
+
+	font-family: sans-serif;
+	font-weight: 300;
+	font-size: 20px;
+
+	padding: 0 10px;
+}
+
+#msgInput:focus {
+	outline: none;
+}

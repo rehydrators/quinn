@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
-import Message from './Message.jsx'
+import Question from './Question.jsx'
+import Answer from './Answer.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -14,47 +15,52 @@ class App extends React.Component {
 
 
   requestAnswers (e) {
-    var self = this;
     e.preventDefault();
-    console.log(this.state.messages)
-    this.setState({
-      question: ''
-    })
-    this.state.messages.push(this.state.question)
-    console.log(this.state.question);
-
-    axios.get('/getAnswers', {
-        params: {
-          question: self.state.question
-        }
+    if (this.state.question.length > 0) {
+      var self = this;
+      this.setState({
+        question: ''
       })
-      .then(function (response) {
-        console.log(response);
-        self.state.messages.push(response.data);
-        self.setState({
-          messages: self.state.messages
+      this.state.messages.push(<Question message={this.state.question} key={this.state.messages.length} />)
+      console.log(this.state.messages);
+  
+      axios.get('/getAnswers', {
+          params: {
+            question: self.state.question
+          }
         })
-        console.log(self.state.messages)
-
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-
+        .then(function (response) {
+          console.log(response);
+          self.state.messages.push(<Answer message={response.data} key={self.state.messages.length}/>);
+          self.setState({
+            messages: self.state.messages
+          })
+          console.log(self.state.messages)
+          var objDiv = document.getElementById("messages");
+          objDiv.scrollTop = objDiv.scrollHeight;
+  
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      }
   }
  
   render () {
     var self = this;
-    var messages = this.state.messages.map(function(message, index) {
-      return <Message message={message} key={index} />
-    });
+    // var messages = this.state.messages.map(function(message, index) {
+    //   return <Message message={message} key={index} />
+    // });
     return (
-      <div>
-        <div id="messages">{messages}</div>
+      <div id="appBody">
+        <div id="messages">{this.state.messages}</div>
 
-        <form onSubmit={this.requestAnswers.bind(this)}>
-          <input id="msgInput" value={self.state.question} onChange={(event) => {self.setState({question: event.target.value});}}/>
+        <form onSubmit={this.requestAnswers.bind(this)} autoComplete="off">
+          <input id="msgInput"
+          placeholder="Ask a question..." 
+          value={self.state.question} 
+          onChange={(event) => {self.setState({question: event.target.value});}}
+          autoComplete="off" />
         </form>
 
       </div>
