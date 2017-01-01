@@ -29,16 +29,21 @@ app.get('/getAnswers', (req, res) => {
 	quora.answer(question(input)).then(answer => {
 		var fullAnswer = function() {
 			if (!!answer.answer0) {
-				return answer.answer0.split('.')
+				var newAnswer = answer.answer0.split('.');
+				newAnswer.pop();
+				if (typeof parseInt(newAnswer[newAnswer.length - 1]) === 'number') {
+					newAnswer.pop();
+				}
+				newAnswer = newAnswer.join('.').replace(/[.]/gi, '.\n\n');
+				return newAnswer + '.';
 			} else {
-				return ["I don't know", "It's hard to say"];		
+				return "I don't know, it's hard to say.";		
 				// hit Bing API to use it's NLP
 					// search Bing with the input question with 'quora'
 					// return the answer from Bing				
 			}				
-		};
-		var summary = `${fullAnswer()[0]}. ${fullAnswer()[1]}.`;
-		res.send(summary);
+		};		
+		res.send(fullAnswer());
 	});
 });
 
