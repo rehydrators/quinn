@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 
 import Question from './Question.jsx'
 import Answer from './Answer.jsx'

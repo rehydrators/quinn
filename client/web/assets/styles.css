@@ -13,24 +13,35 @@ html, body, #app {
 	border-left: 1px solid #cccccc;
 	position: relative;
 	overflow: scroll;
-
 }
 
 #messages {
 	padding: 20px;
 	margin: 0;
-	border: 1px solid black;
+	/*border: 1px solid black;*/
+	border: none;
 	width: 93%;
 	height: 80%;
 	overflow: scroll;
 }
 
+.questionContainer{
+	padding: 0;
+	margin: 20px 0;
+
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: flex-end;
+	align-items: flex-end;
+}
+
 .answer {
-	max-width: 30%;
-	display: block;
+
+	max-width: 50%;
 	background-color: #f1f0f0;
 	border-radius: 20px;
-	margin: 100px 0;
 
 	font-family: sans-serif;
 	font-weight: 300;
@@ -41,9 +52,7 @@ html, body, #app {
 
 .question {
 
-	float: right;
-	margin: 20px 0;
-
+	max-width: 50%;
 	background-color: #0084ff;
 	border-radius: 20px;
 
@@ -78,3 +87,19 @@ html, body, #app {
 #msgInput:focus {
 	outline: none;
 }
+
+/*Mobile CSS -------------------------------------------------------------------------------->*/
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  	#appBody {
+  		width: 100%;
+  		margin: 0;
+  	}
+  	.question, .answer {
+			font-size: 20px;
+  	}
+}
+
