@@ -3,9 +3,16 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
+	<link rel="stylesheet" href="assets/styles.css" />
 </head>
 	<body>
 		<div id="app"></div>
 		<script src="../build/bundle.js"></script>
+		<script>
+			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ){
+			  $('#appBody').css({'width': '100%', 'margin': '0'});
+			}
+	</script>
+
 	</body>
 </html>
