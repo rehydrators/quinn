@@ -1,5 +1,6 @@
 server/.env
 client/web/build/
+server/api
 # Logs
 logs
 *.log
