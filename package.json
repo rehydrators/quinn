@@ -30,7 +30,8 @@
     "path": "^0.12.7",
     "quora-api": "^1.0.0",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "request": "^2.79.0"
   },
   "devDependencies": {
     "babel-loader": "^6.2.10",
