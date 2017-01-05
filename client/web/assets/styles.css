@@ -38,8 +38,8 @@ html, body, #app {
 }
 
 .answer {
-
-	max-width: 50%;
+	width: max-content;
+	max-width: 65%;
 	background-color: #f1f0f0;
 	border-radius: 20px;
 
@@ -51,8 +51,8 @@ html, body, #app {
 }
 
 .question {
-
-	max-width: 50%;
+	width: max-content;
+	max-width: 65%;
 	background-color: #0084ff;
 	border-radius: 20px;
 
@@ -66,6 +66,7 @@ html, body, #app {
 }
 
 #msgInput {
+	position: fixed;
 	width: 97%;
 	height: 40px;
 	position: absolute; 
