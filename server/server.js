@@ -26,7 +26,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getAnswers', (req, res) => {
-	var input = req.query.question;		
+
+	var input = req.query.question;
 
 	// format input to match Quora's query string requirement
 	var question = function(input) {		
