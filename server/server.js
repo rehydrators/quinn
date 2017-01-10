@@ -26,15 +26,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getAnswers', (req, res) => {
-
 	var input = req.query.question;
-
 	// format input to match Quora's query string requirement
 	var question = function(input) {		
 		var dashedQuestion = input.replace(/[' ']/gi, '-');
 		return dashedQuestion;
 	};
-
 	quora.answer(question(input)).then(answer => {			
 		if (!!answer.answer0) {
 			var answers = answer.answer0.split('.');
@@ -45,8 +42,8 @@ app.get('/getAnswers', (req, res) => {
 			answers = answers.join('.').replace(/[.]/gi, '.\n\n');
 			res.send(answers + '.');
 		} else {				
-			// search Bing with the input question with 'quora'
-			var searchQuery = `${input} quora`;
+			// // search Bing with the input question with 'wikipedia'
+			var searchQuery = `${input} wikipedia`;
 			var bingUrl = `https://api.cognitive.microsoft.com/bing/v5.0/search?q=${searchQuery}`;		
 			var options = {
 				url: bingUrl,
@@ -56,18 +53,24 @@ app.get('/getAnswers', (req, res) => {
 				}
 			};				
 
-			// hit Bing API to use it's NLP				
+			// try wikipedia
+			// var searchQuery = input;
+			// var wikiUrl = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=${searchQuery}`;		
+			// var options = {
+			// 	url: wikiUrl,
+			// 	method: 'GET'				
+			// };	
 			request(options, function (error, response, body) {
-			  var jsonData = JSON.parse(body);
-			  // console.log(jsonData.webPages);
-			  var snippets = jsonData.webPages.value.map(function(query) {
-			  	return query.snippet;
-			  });
-			  console.log(jsonData);
-			  if (!error && response.statusCode == 200) {	
-					// return the answer from Bing
-					// console.log(snippets);
-					res.send(snippets[randomizer(snippets)]);				    
+			  var jsonData = JSON.parse(body);			  
+			  if (!error && response.statusCode === 200) {	
+					var searchItems = jsonData.webPages.value;
+					var snippets = [];
+					for (var i = 0; i < searchItems.length; i++) {
+						var searchItem = searchItems[i];
+						snippets.push(searchItem.snippet);
+					}
+					console.log(snippets);
+					res.send(snippets[randomizer(snippets)]);			    
 			  }
 			})
 		}
